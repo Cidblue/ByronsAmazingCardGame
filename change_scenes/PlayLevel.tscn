@@ -1,0 +1,191 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/playscreen/backgrounds/background1.png" type="Texture" id=1]
+[ext_resource path="res://CardPackedScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Table.gd" type="Script" id=4]
+[ext_resource path="res://sounds/Door-Bell-Ding-A1.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/Video-Game-Power-Level-Up-B1.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/BACGLogo.png" type="Texture" id=7]
+[ext_resource path="res://assets/retry_pressed.png" type="Texture" id=8]
+[ext_resource path="res://assets/Mainmenubutton_normal.png" type="Texture" id=9]
+[ext_resource path="res://assets/next_pressed.png" type="Texture" id=10]
+[ext_resource path="res://assets/next_normal.png" type="Texture" id=11]
+[ext_resource path="res://assets/Mainmenubutton_pressed.png" type="Texture" id=12]
+[ext_resource path="res://assets/retry_normal.png" type="Texture" id=13]
+
+[node name="PlayLevel" type="CanvasLayer"]
+script = ExtResource( 3 )
+level_name = "play"
+
+[node name="Table" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SurpriseImage" type="TextureRect" parent="Table"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -5
+
+[node name="Row1" type="HBoxContainer" parent="Table/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 203.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -4
+
+[node name="Card1" parent="Table/VBoxContainer/Row1" instance=ExtResource( 2 )]
+margin_right = 259.0
+margin_bottom = 203.0
+
+[node name="Card2" parent="Table/VBoxContainer/Row1" instance=ExtResource( 2 )]
+margin_left = 255.0
+margin_right = 514.0
+margin_bottom = 203.0
+
+[node name="Card3" parent="Table/VBoxContainer/Row1" instance=ExtResource( 2 )]
+margin_left = 510.0
+margin_right = 769.0
+margin_bottom = 203.0
+
+[node name="Card4" parent="Table/VBoxContainer/Row1" instance=ExtResource( 2 )]
+margin_left = 765.0
+margin_bottom = 203.0
+
+[node name="Row2" type="HBoxContainer" parent="Table/VBoxContainer"]
+margin_top = 198.0
+margin_right = 1024.0
+margin_bottom = 401.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -4
+
+[node name="Card5" parent="Table/VBoxContainer/Row2" instance=ExtResource( 2 )]
+margin_right = 259.0
+margin_bottom = 203.0
+
+[node name="Card6" parent="Table/VBoxContainer/Row2" instance=ExtResource( 2 )]
+margin_left = 255.0
+margin_right = 514.0
+margin_bottom = 203.0
+
+[node name="Card7" parent="Table/VBoxContainer/Row2" instance=ExtResource( 2 )]
+margin_left = 510.0
+margin_right = 769.0
+margin_bottom = 203.0
+
+[node name="Card8" parent="Table/VBoxContainer/Row2" instance=ExtResource( 2 )]
+margin_left = 765.0
+margin_bottom = 203.0
+
+[node name="Row3" type="HBoxContainer" parent="Table/VBoxContainer"]
+margin_top = 396.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -4
+
+[node name="Card9" parent="Table/VBoxContainer/Row3" instance=ExtResource( 2 )]
+margin_right = 259.0
+margin_bottom = 204.0
+
+[node name="Card10" parent="Table/VBoxContainer/Row3" instance=ExtResource( 2 )]
+margin_left = 255.0
+margin_right = 514.0
+margin_bottom = 204.0
+
+[node name="Card11" parent="Table/VBoxContainer/Row3" instance=ExtResource( 2 )]
+margin_left = 510.0
+margin_right = 769.0
+margin_bottom = 204.0
+
+[node name="Card12" parent="Table/VBoxContainer/Row3" instance=ExtResource( 2 )]
+margin_left = 765.0
+margin_bottom = 204.0
+
+[node name="EndGraphic" type="CenterContainer" parent="Table"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/EndGraphic"]
+margin_left = 361.0
+margin_top = 48.0
+margin_right = 663.0
+margin_bottom = 552.0
+
+[node name="EndLogo" type="TextureRect" parent="Table/EndGraphic/VBoxContainer"]
+margin_right = 302.0
+margin_bottom = 348.0
+texture = ExtResource( 7 )
+
+[node name="MainMenuButton" type="TextureButton" parent="Table/EndGraphic/VBoxContainer"]
+margin_top = 352.0
+margin_right = 302.0
+margin_bottom = 426.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 12 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Table/EndGraphic/VBoxContainer"]
+margin_top = 430.0
+margin_right = 302.0
+margin_bottom = 504.0
+
+[node name="RetryButton" type="TextureButton" parent="Table/EndGraphic/VBoxContainer/HBoxContainer"]
+margin_right = 149.0
+margin_bottom = 74.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 8 )
+
+[node name="ChangeSceneButton" type="TextureButton" parent="Table/EndGraphic/VBoxContainer/HBoxContainer"]
+margin_left = 153.0
+margin_right = 302.0
+margin_bottom = 74.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 10 )
+
+[node name="LevelLoadedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ButtonClickedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+[connection signal="hide_card" from="Table/VBoxContainer/Row1/Card1" to="Table" method="_on_Card1_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row1/Card1" to="Table" method="_on_Card1_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row1/Card2" to="Table" method="_on_Card2_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row1/Card2" to="Table" method="_on_Card2_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row1/Card3" to="Table" method="_on_Card3_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row1/Card3" to="Table" method="_on_Card3_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row1/Card4" to="Table" method="_on_Card4_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row1/Card4" to="Table" method="_on_Card4_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row2/Card5" to="Table" method="_on_Card5_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row2/Card5" to="Table" method="_on_Card5_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row2/Card6" to="Table" method="_on_Card6_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row2/Card6" to="Table" method="_on_Card6_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row2/Card7" to="Table" method="_on_Card7_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row2/Card7" to="Table" method="_on_Card7_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row2/Card8" to="Table" method="_on_Card8_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row2/Card8" to="Table" method="_on_Card8_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row3/Card9" to="Table" method="_on_Card9_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row3/Card9" to="Table" method="_on_Card9_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row3/Card10" to="Table" method="_on_Card10_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row3/Card10" to="Table" method="_on_Card10_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row3/Card11" to="Table" method="_on_Card11_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row3/Card11" to="Table" method="_on_Card11_show_card"]
+[connection signal="hide_card" from="Table/VBoxContainer/Row3/Card12" to="Table" method="_on_Card12_hide_card"]
+[connection signal="show_card" from="Table/VBoxContainer/Row3/Card12" to="Table" method="_on_Card12_show_card"]
+[connection signal="pressed" from="Table/EndGraphic/VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
+[connection signal="pressed" from="Table/EndGraphic/VBoxContainer/HBoxContainer/RetryButton" to="Table" method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="Table/EndGraphic/VBoxContainer/HBoxContainer/ChangeSceneButton" to="." method="_on_ChangeSceneButton_pressed"]

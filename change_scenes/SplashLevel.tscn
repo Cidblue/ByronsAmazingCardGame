@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/start_pressed.png" type="Texture" id=1]
+[ext_resource path="res://assets/splashscreen/bannerbackground.png" type="Texture" id=2]
+[ext_resource path="res://assets/start_normal.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Logo.gd" type="Script" id=4]
+[ext_resource path="res://assets/BACGLogo.png" type="Texture" id=5]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=6]
+[ext_resource path="res://sounds/Door-Bell-Ding-A1.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/Video-Game-Power-Level-Up-B1.wav" type="AudioStream" id=8]
+[ext_resource path="res://scripts/Background.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "LogoAnim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/VBoxContainer/Logo:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10, 10 ), Vector2( 1, 1 ) ]
+}
+
+[node name="SplashLevel" type="CanvasLayer"]
+script = ExtResource( 6 )
+level_name = "splash"
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1024.0
+margin_top = -1120.0
+custom_constants/margin_left = 852
+custom_constants/margin_bottom = -1051
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Copyright" type="Label" parent="Background/MarginContainer"]
+margin_left = 852.0
+margin_top = 1078.0
+margin_right = 1024.0
+margin_bottom = 1092.0
+text = "(C) FakeGameCo 2021"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.41418
+margin_bottom = -1.41418
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer"]
+margin_left = 369.0
+margin_top = 87.0
+margin_right = 654.0
+margin_bottom = 513.0
+
+[node name="Logo" type="TextureRect" parent="Background/CenterContainer/VBoxContainer"]
+margin_right = 285.0
+margin_bottom = 348.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/CenterContainer/VBoxContainer"]
+margin_top = 352.0
+margin_right = 285.0
+margin_bottom = 426.0
+
+[node name="ChangeSceneButton" type="TextureButton" parent="Background/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 68.0
+margin_right = 217.0
+margin_bottom = 74.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+method_call_mode = 1
+anims/LogoAnim = SubResource( 1 )
+
+[node name="ButtonClickedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="LevelLoadedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+[connection signal="pressed" from="Background/CenterContainer/VBoxContainer/CenterContainer/ChangeSceneButton" to="." method="_on_ChangeSceneButton_pressed"]
