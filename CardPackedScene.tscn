@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/card_pack/cardbackground.png" type="Texture" id=1]
+[ext_resource path="res://scripts/CardNode.gd" type="Script" id=2]
+[ext_resource path="res://scripts/CardPanel.gd" type="Script" id=3]
+
+[node name="BackgroundPanel" type="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterAligner" type="CenterContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CardNode" type="TextureRect" parent="CenterAligner"]
+margin_left = 455.0
+margin_top = 218.0
+margin_right = 555.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="CenterAligner/CardNode" to="CenterAligner/CardNode" method="_on_CardNode_mouse_entered"]
+[connection signal="mouse_exited" from="CenterAligner/CardNode" to="CenterAligner/CardNode" method="_on_CardNode_mouse_exited"]
+[connection signal="placed_face_down" from="CenterAligner/CardNode" to="." method="_on_CardNode_placed_face_down"]
+[connection signal="placed_face_up" from="CenterAligner/CardNode" to="." method="_on_CardNode_placed_face_up"]
